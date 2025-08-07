@@ -1,79 +1,159 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🏃‍♂️ Fitness Tracker App
 
-# Getting Started
+A React Native app to track your fitness activity — including daily steps, calories, and more. Built with SQLite and Firebase, this app stores your progress, supports custom goals, and offers a clean, gradient-based UI using Tailwind-inspired styling.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+---
 
-## Step 1: Start the Metro Server
+## 🧩 Key Features
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- Track daily steps, calories, and personal health metrics
+- Persist progress with SQLite + AsyncStorage
+- Smooth navigation and onboarding flow
+- Context-based state management
+- Firebase-ready architecture
+- Offline-first support
+- Dark/light theme support
 
-To start Metro, run the following command from the _root_ of your React Native project:
+---
 
+## 🚀 Getting Started
+
+### 1. Clone the Repo
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+git clone https://github.com/your-username/fitness-tracker-app.git
+cd fitness-tracker-app
 ```
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
+### 2. Install Dependencies
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+npm install
 ```
 
-### For iOS
-
+### 3. Run the App
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+npx react-native run-android
+# or
+npx react-native run-ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+---
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## 🧱 Folder Structure
+```
+.
+├── android/                   # Android-specific code
+├── ios/                      # iOS-specific code
+├── src/
+│   ├── assets/               # Fonts, images, icons
+│   ├── components/           # Shared UI components
+│   ├── configs/              # App-level configuration
+│   ├── constants/            # Static values
+│   ├── contexts/             # App-wide Context Providers
+│   │   ├── LanguageContext.jsx
+│   │   ├── StepsTrackingContext.jsx
+│   │   └── themeContext.jsx
+│   ├── dbHelpers/            # SQLite helpers
+│   │   ├── StepsHelper.jsx
+│   │   └── stepsHelper.js
+│   ├── hooks/                # Custom React hooks
+│   │   ├── useAds.jsx
+│   │   ├── usePersonal.jsx
+│   │   └── useSteps.jsx
+│   ├── layouts/              # Layout components
+│   ├── navigations/          # Stack and tab navigators
+│   ├── screens/              # App screens
+│   │   ├── FAQs.jsx
+│   │   ├── Home.jsx
+│   │   ├── OnBoard.jsx
+│   │   ├── Register.jsx
+│   │   ├── Settings.jsx
+│   │   └── Tracker.jsx
+│   └── ui-components/        # Buttons, cards, icons
+├── App.tsx                   # Main entry point
+└── ...
+```
 
-## Step 3: Modifying your App
+---
 
-Now that you have successfully run the app, let's modify it.
+## 🧠 State Management
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+Using Context API for global state:
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+- `StepsTrackingContext`: Handles step data and logic
+- `ThemeContext`: Dark/light mode
+- `LanguageContext`: Multi-language support (planned)
 
-## Congratulations! :tada:
+---
 
-You've successfully run and modified your React Native App. :partying_face:
+## 🧬 Custom Hooks
 
-### Now what?
+- `useSteps`: Manages SQLite step data
+- `usePersonal`: Loads user details (age, gender, goal)
+- `useAds`: [Future] AdMob or rewarded video integration
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+---
 
-# Troubleshooting
+## 🗃️ Database Helpers
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+- `StepsHelper`: Insert, read, delete step data
+- `PersonalHelper`: Save/load user profile metrics
 
-# Learn More
+---
 
-To learn more about React Native, take a look at the following resources:
+## 📱 Screens
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+| Screen    | Purpose                            |
+|-----------|------------------------------------|
+| OnBoard   | First-time intro to app            |
+| Register  | Capture personal details           |
+| Home      | Step counter and dashboard         |
+| Tracker   | Graphs and history of activity     |
+| Settings  | App settings and theme/language    |
+| FAQs      | Help and common questions          |
+
+---
+
+## 📦 Dependencies
+
+Includes essential packages:
+
+- axios
+- moment, dayjs
+- @react-navigation/native, stack, bottom-tabs
+- @react-native-async-storage/async-storage
+- react-native-sqlite-storage
+- react-native-safe-area-context, gesture-handler, screens
+- react-native-linear-gradient
+- react-native-wind (Tailwind CSS-like styling)
+- react-native-heroicons, react-native-svg
+- react-native-firebase/app
+- lottie-react-native
+- uuid, react-native-rename
+
+---
+
+## 🖋 Fonts
+
+- Poppins
+- Montserrat
+
+---
+
+## 🔮 Future Improvements
+
+- Google Fit / Apple HealthKit Integration
+- Firebase Authentication & Cloud Sync
+- Weekly/Monthly analytics
+- Language translations (i18n)
+- Notification reminders for activity
+
+---
+
+## 🙋 Author
+
+**Abdul Rehman**  
+Full Stack Developer (React Native, PHP, Node.js)
+
+- 🌐 [LinkedIn](https://www.linkedin.com/in/rehmanthedeveloper/)
+- 💼 [Portfolio](https://me.infinitibytech.com/)
+- 📫 Email: hi@rehman.developer@outlook.com
